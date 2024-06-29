@@ -1,0 +1,18 @@
+# Base Cypress Image
+FROM cypress/included:13.10.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project files and install dependencies
+COPY package.json .
+COPY package-lock.json .
+
+# Indicates the script is running in a continuous integration environment.
+ENV CI=1
+
+# This command is similar to npm install, except it's meant to be used in automated environments such as test platforms, continuous integration, and deployment -- or any situation where you want to make sure you're doing a clean install of your dependencies.
+RUN npm ci 
+
+# Verifies if Cypress has been installed correctly and is functioning as expected.
+RUN npx cypress verify

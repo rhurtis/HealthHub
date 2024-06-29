@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  client:
+    tty: true # keeps container running
+    build:
+      context: ../client
+      dockerfile: ../docker/Dockerfile.client
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../client:/app
+
+  server:
+    build:
+      context: ../server
+      dockerfile: ../docker/Dockerfile.server
+    ports:
+      - "5005:5000"
+    volumes:
+      - ../server:/app
+
+  database:
+    build:
+      context: ../database
+      dockerfile: ../docker/Dockerfile.database
+    ports:
+      - "5555:5432"
+    volumes:
+      - ../database/postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "test@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "test"
+    user: root
+    volumes:
+      - ../database/pgadmin_data:/var/lib/pgadmin
+
+  e2e:
+    build:
+      context: ../e2e
+      dockerfile: ../docker/Dockerfile.e2e
+    volumes:
+      - ../e2e/cypress:/app/cypress
+      - ../e2e/cypress.config.js:/app/cypress.config.js
