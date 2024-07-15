@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Counter from "./features/counter/Counter";
 import HelloWorld from './features/hello-world/HelloWorld';
 import SampleAsyncFetch from './features/sample-async-fetch/SampleAsyncFetch';
