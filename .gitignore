@@ -2,6 +2,7 @@ database/pgadmin_data
 database/postgres_data
 
 server/.pytest_cache
+server/.env
 
 # Logs
 client/logs
@@ -27,3 +28,5 @@ client/*.ntvs*
 client/*.njsproj
 client/*.sln
 client/*.sw?
+
+client/.env

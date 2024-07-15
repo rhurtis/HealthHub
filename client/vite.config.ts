@@ -18,8 +18,6 @@ export default defineConfig({
     
   },
 
-  envDir: "./envDir/",
-
   build: {
     target: 'esnext'
   }

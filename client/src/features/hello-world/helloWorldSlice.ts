@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, isRejected, isRejectedWithValue } from "@reduxjs/toolkit";
-
+import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
+import config from '../../utils/config';
 
 export interface HelloWorldSliceState {
     value: string;
@@ -13,12 +13,12 @@ const initialState: HelloWorldSliceState = {
     error: null
 }
 
-export const fetchHelloWorld = createAsyncThunk<HelloWorldSliceState>('helloWorld/fetchHelloWorld', async () => {
+export const fetchHelloWorld = createAsyncThunk<any>('helloWorld/fetchHelloWorld', async () => {
     try {
-        const response = await fetch('http://localhost:5005/hello_world');
+        const response = await fetch(config.apiURL + '/hello_world');
         const data = await response.json();
         return {"value":data};
-    } catch(err) {
+    } catch(err: any) {
         if (!err.response) {
             throw err
           }
@@ -35,7 +35,7 @@ export const helloWorldSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(fetchHelloWorld.pending, (state, action) => {
+            .addCase(fetchHelloWorld.pending, (state) => {
                 state.value = 'loading'
                 state.error = null
                 state.status = 'pending'
@@ -47,7 +47,7 @@ export const helloWorldSlice = createSlice({
                 
             })
             .addCase(fetchHelloWorld.rejected, (state, action) => {
-                state.error = action.error.message
+                state.error = action.error.message ?? "An unknown error occurred."
                 state.status = 'rejected'
                 state.value = 'There was an error with the server.'
                 
