@@ -58,3 +58,9 @@ jobs:
       - name: Run Pytest tests
         run: pytest
         working-directory: ./server
+        env:
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: host.docker.internal
+          POSTGRES_PORT: 5555
+          POSTGRES_DATABASE_NAME: postgres
