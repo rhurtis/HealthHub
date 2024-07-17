@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+  pull_request:
+    branches:
+      - main
+      - staging
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5555:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.14.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.3
+
+      - name: Install Node.js dependencies
+        run: yarn install
+        working-directory: ./client
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+        working-directory: ./server
+
+      - name: Run Vitest tests
+        run: yarn test
+        working-directory: ./client
+
+      - name: Run Pytest tests
+        run: pytest
+        working-directory: ./server
+        env:
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: host.docker.internal
+          POSTGRES_PORT: 5555
+          POSTGRES_DATABASE_NAME: postgres
