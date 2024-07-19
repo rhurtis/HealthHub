@@ -1,4 +1,5 @@
 # HealthHub
+[![codecov](https://codecov.io/gh/rhurtis/HealthHub/branch/main/graph/badge.svg?token=JIQDDF52S1)](https://codecov.io/gh/rhurtis/HealthHub)
 
 ## Running the Local Development Environment
 1. Navigate to the `docker` folder:
