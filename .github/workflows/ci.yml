@@ -51,12 +51,26 @@ jobs:
         run: pip install -r requirements.txt
         working-directory: ./server
 
-      - name: Run Vitest tests
-        run: yarn test
+      - name: Build React app
+        run: yarn build
         working-directory: ./client
 
-      - name: Run Pytest tests
-        run: pytest
+      - name: Run Vitest tests and generate coverage report
+        run: yarn vitest run --coverage
+        working-directory: ./client
+
+      - name: Run database migrations
+        run: flask db upgrade
+        working-directory: ./server
+        env:
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5555
+          POSTGRES_DATABASE_NAME: postgres
+
+      - name: Run Pytest tests and generate coverage report
+        run: pytest --cov
         working-directory: ./server
         env:
           POSTGRES_USERNAME: postgres
@@ -64,3 +78,8 @@ jobs:
           POSTGRES_HOST: host.docker.internal
           POSTGRES_PORT: 5555
           POSTGRES_DATABASE_NAME: postgres
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
