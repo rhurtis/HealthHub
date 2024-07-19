@@ -43,7 +43,7 @@ services:
   e2e:
     build:
       context: ../../e2e
-      dockerfile: ../local-development/docker/Dockerfile.e2e
+      dockerfile: ../docker/local-development/Dockerfile.e2e
     volumes:
       - ../../e2e/cypress:/app/cypress
       - ../../e2e/cypress.config.js:/app/cypress.config.js
