@@ -3,6 +3,7 @@ database/postgres_data
 
 server/.pytest_cache
 server/.env
+server/.coverage
 
 # Logs
 client/logs
@@ -30,3 +31,4 @@ client/*.sln
 client/*.sw?
 
 client/.env
+client/coverage
