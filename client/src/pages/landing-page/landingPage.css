@@ -1,0 +1,8 @@
+.landingPageBox {   
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+display:flex; 
+}
