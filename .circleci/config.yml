@@ -12,6 +12,9 @@ jobs:
       - run:
           name: verify client folder
           command: ls -la ~/project/client
+      - run:
+          name: cd into client
+          command: cd client
       - node/install-packages:
           pkg-manager: yarn
       - run:
