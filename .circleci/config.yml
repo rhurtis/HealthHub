@@ -15,8 +15,12 @@ jobs:
       - run:
           name: cd into client
           command: cd client
-      - node/install-packages:
-          pkg-manager: yarn
+      - run:
+          name: install dependencies
+          command: yarn install
+      - run:
+          name: build react app
+          command: yarn build
       - run:
           name: Run tests
           command: yarn vitest run --coverage
