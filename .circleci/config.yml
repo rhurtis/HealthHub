@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   node: circleci/node@5
-  #python: circleci/python@2
 jobs:
   test-node:
     # Install node dependencies and run tests
@@ -16,46 +15,25 @@ jobs:
           name: cd into client
           command: cd client
       - run:
+          name: list all in dir
+          command: ls -a
+      - run:
           name: install dependencies
           command: yarn install
+      - run:
+          name: list all in dir
+          command: ls -a
       - run:
           name: build react app
           command: yarn build
       - run:
+          name: list all in dir
+          command: ls -a
+      - run:
           name: Run tests
           command: yarn vitest run --coverage
-  # test-python:
-  #   # Install dependencies and run tests
-  #   docker:
-  #     - image: cimg/python:3.8-node
-  #   working_directory: ~/project/server
-  #   steps:
-  #     - checkout:
-  #         path: ~/project
-  #     - python/install-packages
-  #     - run:
-  #         name: Run tests
-  #         command: pytest --junitxml=junit.xml || ((($? == 5)) && echo 'Did not find any tests to run.')
-  #     - store_test_results:
-  #         path: junit.xml
-  # deploy:
-  #   # This is an example deploy job, not actually used by the workflow
-  #   docker:
-  #     - image: cimg/base:stable
-  #   steps:
-  #     # Replace this with steps to deploy to users
-  #     - run:
-  #         name: deploy
-  #         command: '#e.g. ./deploy.sh'
-  #     - run:
-  #         name: found github actions config
-  #         command: ':'
+  
 workflows:
   build-and-test:
     jobs:
       - test-node
-#      - test-python
-    # - deploy:
-    #     requires:
-    #       - test-node
-    #       - test-python
