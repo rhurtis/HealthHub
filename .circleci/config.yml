@@ -6,7 +6,7 @@ jobs:
   test-node:
     # Install node dependencies and run tests
     executor: node/default
-    working_directory: ~/client
+    working_directory: ./client
     steps:
       - checkout:
           path: ./client
