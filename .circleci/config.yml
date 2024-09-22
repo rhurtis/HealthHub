@@ -10,13 +10,16 @@ jobs:
       - checkout
       - run:
           name: verify client folder
-          command: ls -la ~/project/client
+          command: ls -a
       - run:
           name: cd into client
           command: cd client
       - run:
           name: list all in dir
           command: ls -a
+      - run:
+          name: cd into client
+          command: cd client
       - run:
           name: install dependencies
           command: yarn install
