@@ -10,9 +10,9 @@ jobs:
     steps:
       - checkout:
           path: ./client
-      # - run:
-      #     name: Move to client directory
-      #     command: cd client
+      - run:
+          name: Move to client directory
+          command: cd client
       - node/install-packages:
           pkg-manager: yarn
       - run:
