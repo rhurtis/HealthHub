@@ -8,10 +8,11 @@ jobs:
     executor: node/default
     working_directory: ~/project/client
     steps:
-      - checkout
-      - run:
-          name: Move to client directory
-          command: cd client
+      - checkout:
+          path: ./client
+      # - run:
+      #     name: Move to client directory
+      #     command: cd client
       - node/install-packages:
           pkg-manager: yarn
       - run:
