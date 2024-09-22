@@ -9,7 +9,7 @@ jobs:
     working_directory: ~/client
     steps:
       - checkout:
-          path: ~/client
+          path: ./client
       - node/install-packages:
           pkg-manager: yarn
       - run:
