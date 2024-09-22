@@ -13,29 +13,20 @@ jobs:
           name: verify client folder
           command: ls -a
       - run:
-          name: cd into client
-          command: cd client
-      - run:
-          name: list all in dir
-          command: ls -a
-      - run:
-          name: cd into client
-          command: cd client
-      - run:
           name: install dependencies
-          command: yarn install
-      - run:
-          name: list all in dir
-          command: ls -a
+          command: |
+            cd client
+            yarn install
       - run:
           name: build react app
-          command: yarn build
-      - run:
-          name: list all in dir
-          command: ls -a
+          command: |
+            cd client
+            yarn build
       - run:
           name: Run tests
-          command: yarn vitest run --coverage
+          command: |
+            cd client
+            yarn vitest run --coverage
   
 workflows:
   build-and-test:
