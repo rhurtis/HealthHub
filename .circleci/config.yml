@@ -5,11 +5,11 @@ jobs:
   test-node:
     # Install node dependencies and run tests
     executor: node/default
-    working_directory: ~/project/client
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      - run:
+          name: Change directory to client
+          command: cd client && yarn install
 
 workflows:
   build-and-test:
