@@ -5,9 +5,9 @@ jobs:
   test-node:
     # Install node dependencies and run tests
     executor: node/default
+    working_directory: ~/project/client
     steps:
-      - checkout:
-          path: ~/client
+      - checkout
       - node/install-packages:
           pkg-manager: yarn
 
