@@ -7,27 +7,10 @@ jobs:
     executor: node/default
     working_directory: ~/project/client
     steps:
-      - checkout:
-          path: client
-      - run:
-          name: verify client folder
-          command: ls -a
-      - run:
-          name: install dependencies
-          command: |
-            cd client
-            yarn install
-      - run:
-          name: build react app
-          command: |
-            cd client
-            yarn build
-      - run:
-          name: Run tests
-          command: |
-            cd client
-            yarn vitest run --coverage
-  
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+
 workflows:
   build-and-test:
     jobs:
