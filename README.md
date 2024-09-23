@@ -1,6 +1,6 @@
 # HealthHub
 [![codecov](https://codecov.io/gh/rhurtis/HealthHub/branch/main/graph/badge.svg?token=JIQDDF52S1)](https://codecov.io/gh/rhurtis/HealthHub)
-
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/W4GSDxdF9RbgcnKqecAvv6/KA8J7tQUHGsG1skwBe7gND/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/W4GSDxdF9RbgcnKqecAvv6/KA8J7tQUHGsG1skwBe7gND/tree/main)
 ## Running the Local Development Environment
 1. Navigate to the `docker` folder:
     ```sh
