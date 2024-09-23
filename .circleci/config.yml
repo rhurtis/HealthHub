@@ -7,7 +7,7 @@ jobs:
     executor: node/default
     steps:
       - checkout:
-          path: client/
+          path: ~/client
       - node/install-packages:
           pkg-manager: yarn
 
